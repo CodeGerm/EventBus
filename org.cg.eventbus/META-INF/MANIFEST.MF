@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Event Bus
+Bundle-SymbolicName: org.cg.eventbus
+Bundle-Version: 1.0.0
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Code Germ
+Import-Package: org.apache.avro,
+ org.apache.log4j
+Export-Package: org.cg.eventbus,
+ org.cg.eventbus.consumer,
+ org.cg.eventbus.producer
+Bundle-ClassPath: target/lib/scala-library-2.11.5.jar,
+ .,
+ target/lib/kafka-clients-0.8.2.1.jar,
+ target/lib/commons-configuration-1.10.jar,
+ target/lib/commons-lang-2.6.jar,
+ target/lib/commons-logging-1.1.1.jar,
+ target/lib/commons-pool2-2.0.jar,
+ target/lib/metrics-core-2.2.0.jar,
+ target/lib/slf4j-api-1.6.4.jar,
+ target/lib/zookeeper-3.4.6.jar,
+ target/classes/
