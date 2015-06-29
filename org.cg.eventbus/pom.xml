@@ -88,27 +88,12 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<configuration>
-							<tasks>
-								<copy
-									file="${project.build.directory}/release/${project.build.finalName}-bin.zip"
-									tofile="${project.build.directory}/${project.build.finalName}.jar"
-									overwrite="true" />
-							</tasks>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-antrun-plugin</artifactId> 
+				<executions> <execution> <phase>package</phase> <configuration> <tasks> <copy 
+				file="${project.build.directory}/release/${project.build.finalName}-bin.zip" 
+				tofile="${project.build.directory}/${project.build.finalName}.jar" overwrite="true" 
+				/> </tasks> </configuration> <goals> <goal>run</goal> </goals> </execution> 
+				</executions> </plugin> -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -121,8 +106,10 @@
 						</goals>
 						<configuration>
 							<artifacts>
-								<!-- <artifact> <file>${project.build.directory}/release/${project.build.finalName}-osgi.jar</file> 
-									<type>jar</type> </artifact> -->
+								<artifact>
+									<file>${project.build.directory}/release/${project.build.finalName}-bin.zip</file>
+									<type>zip</type>
+								</artifact>
 							</artifacts>
 						</configuration>
 					</execution>
