@@ -5,6 +5,7 @@ package org.cg.eventbus;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Map;
 
 import org.apache.avro.io.BinaryDecoder;
 import org.apache.avro.io.BinaryEncoder;
@@ -15,28 +16,27 @@ import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.apache.log4j.Logger;
 
-import kafka.serializer.Decoder;
-import kafka.serializer.Encoder;
-import kafka.utils.VerifiableProperties;
-
 /**
+ * Event bus Avro serializer/deserializer. 
+ * 
+ * Usage : extend the AvroSerializer with default constructor 
+ * 
  * @author yanlinwang
  *
  */
-public class AvroSerializer<T> implements Encoder<T>, Decoder<T>{
+public class AvroSerializer<T> implements IEventBusSerializer<T>{
 	
 	private static Logger log = Logger.getLogger(AvroSerializer.class);
 	private DatumWriter<T> writer;
 	SpecificDatumReader<T> reader; 
 	
-	public AvroSerializer(VerifiableProperties verifiableProperties,
-			Class<T> typeParameterClass) {
+	public AvroSerializer(Class<T> typeParameterClass) {
 		writer = new SpecificDatumWriter<T>(typeParameterClass);
 		reader = new SpecificDatumReader<T>(typeParameterClass);
 	}
 
 	@Override
-	public T fromBytes(byte[] data) {		
+	public T deserialize(String arg0, byte[] data) {
 		BinaryDecoder decoder = DecoderFactory.get().binaryDecoder(data, null);
 		T event = null;
 		try {
@@ -45,11 +45,26 @@ public class AvroSerializer<T> implements Encoder<T>, Decoder<T>{
 			log.error("Fail to read object from bytes" , e);
 		}
 		return event;
+	}
 
+	/* (non-Javadoc)
+	 * @see kafka.serializer.Decoder#fromBytes(byte[])
+	 */
+	@Override
+	public T fromBytes(byte[] arg0) {
+		return deserialize(null,arg0);
 	}
 
 	@Override
-	public byte[] toBytes(T event) {
+	public void close() {
+	}
+
+	@Override
+	public void configure(Map<String, ?> arg0, boolean arg1) {
+	}
+
+	@Override
+	public byte[] serialize(String arg0, T event) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		BinaryEncoder encoder = EncoderFactory.get().binaryEncoder(out, null);
 		try {
@@ -67,7 +82,6 @@ public class AvroSerializer<T> implements Encoder<T>, Decoder<T>{
 		}
 		byte[] serializedBytes = out.toByteArray();
 		return serializedBytes;
-
 	}
 
 }

@@ -14,6 +14,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.log4j.Logger;
+import org.cg.eventbus.ConfigUtil;
 import org.cg.eventbus.ICallback;
 import org.cg.eventbus.ICallback.Response;
 import org.cg.eventbus.IProducer;
@@ -52,8 +53,14 @@ public abstract class AbstractEventProducer<K, V> implements
 	private KafkaProducer<K, V> producer;
 
 	public AbstractEventProducer(String cfgPath) throws Exception {
-		Configuration config = new PropertiesConfiguration(cfgPath);
-		initialize(config);
+		this(cfgPath, null);
+	}
+	
+	public AbstractEventProducer(String cfgPath, String prefix) throws Exception {
+		if (prefix==null)
+			initialize (new PropertiesConfiguration(cfgPath));
+		else
+			initialize(ConfigUtil.extractConfiguration(ConfigurationConverter.getProperties(new PropertiesConfiguration(cfgPath)), prefix));
 	}
 
 	public AbstractEventProducer(Configuration config)

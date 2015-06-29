@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/jopt-simple-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/kafka_2.11-0.8.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/classes/"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/commons-configuration-1.10.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/commons-lang-2.6.jar"/>

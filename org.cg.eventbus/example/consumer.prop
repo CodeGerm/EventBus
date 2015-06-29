@@ -1,0 +1,13 @@
+group.id = test_group
+
+# Consumer Connection Setting
+zookeeper.connect = localhost:2181
+key.decoder = kafka.serializer.StringDecoder
+value.decoder = org.cg.eventbus.test.EventSerializer
+
+# Topic, threads, registered listeners
+topics = yanlinTopic
+yanlinTopic.threads = 2
+yanlinTopic.listeners = org.cg.eventbus.test.TestEventListener,org.cg.eventbus.test.TestEventListener
+yanlin1.threads = 2
+yanlin1.listeners.yanlin1 = org.cg.eventbus.test.TestEventListener

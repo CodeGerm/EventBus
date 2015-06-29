@@ -41,29 +41,11 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>target/lib</outputDirectory>
-							<overWriteReleases>false</overWriteReleases>
-							<overWriteSnapshots>false</overWriteSnapshots>
-							<overWriteIfNewer>true</overWriteIfNewer>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- OSGI packaging start -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
+
 				<executions>
 					<execution>
 						<id>copy-dependencies</id>
@@ -76,7 +58,9 @@
 							<overWriteReleases>false</overWriteReleases>
 							<overWriteSnapshots>false</overWriteSnapshots>
 							<overWriteIfNewer>true</overWriteIfNewer>
+							<excludeScope>provided</excludeScope>
 						</configuration>
+
 					</execution>
 				</executions>
 			</plugin>
@@ -204,14 +188,40 @@
 			<groupId>org.apache.avro</groupId>
 			<artifactId>avro</artifactId>
 			<version>1.7.7</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>snappy-java</artifactId>
+					<groupId>org.xerial.snappy</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>paranamer</artifactId>
+					<groupId>com.thoughtworks.paranamer</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.11</artifactId>
 			<version>0.8.2.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>lz4</artifactId>
+					<groupId>net.jpountz.lz4</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>netty</artifactId>
+					<groupId>io.netty</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>snappy-java</artifactId>
+					<groupId>org.xerial.snappy</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+
 
 		<dependency>
 			<groupId>joda-time</groupId>

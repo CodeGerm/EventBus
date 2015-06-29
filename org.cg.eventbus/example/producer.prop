@@ -1,0 +1,15 @@
+flow.sources.source.channel.enabled=false
+flow.sources.source.kafkaChannel.zookeeper.connect = localhost:2181
+flow.sources.source.kafkaChannel.bootstrap.servers = localhost:9092
+flow.sources.source.kafkaChannel.producer.topic = yanlinTopic
+flow.sources.source.kafkaChannel.producer.topic.replicationFactor = 1
+flow.sources.source.kafkaChannel.producer.topic.numPartitions = 5
+flow.sources.source.kafkaChannel.key.serializer = org.apache.kafka.common.serialization.StringSerializer
+flow.sources.source.kafkaChannel.value.serializer = org.cg.eventbus.test.EventSerializer
+#flow.sources.source.kafkaChannel.partitioner.class = 
+flow.sources.source.kafkaChannel.compression.type = snappy
+flow.sources.source.kafkaChannel.acks = 1
+flow.sources.source.kafkaChannel.queue.size = 500000
+flow.sources.source.kafkaChannel.batch.size = 8000
+flow.sources.source.kafkaChannel.pool.size = 8
+flow.sources.source.kafkaChannel.idle.size = 8

@@ -95,8 +95,12 @@ public class ConsumerConfigrator {
 			
 			try {
 				Class<?> keyClass = Class.forName(decoderClassName);
-				Constructor<?> keyCons = keyClass.getConstructor(kafka.utils.VerifiableProperties.class);
-				return (Decoder) keyCons.newInstance(new Object[] {null});
+				Constructor cs [] =  keyClass.getConstructors();
+				int ps = cs[0].getParameterTypes().length;
+				Object [] params = new Object[ps];
+				//Constructor<?> keyCons = keyClass.getConstructor(kafka.utils.VerifiableProperties.class)
+					
+				return (Decoder) cs[0].newInstance(params);
 			} catch (Exception e) {
 				logger.error("failed to initate decoder, ", e);
 				throw new IllegalArgumentException("failed to initate key decoder groupId - " + groupId, e);
@@ -113,8 +117,10 @@ public class ConsumerConfigrator {
 			
 			try {
 				Class<?> valueClass = Class.forName(decoderClassName);
-				Constructor<?> valueCons = valueClass.getConstructor(kafka.utils.VerifiableProperties.class);
-				return (Decoder) valueCons.newInstance(new Object[] {null});
+				Constructor cs [] =  valueClass.getConstructors();
+				int ps = cs[0].getParameterTypes().length;
+				Object [] params = new Object[ps];
+				return (Decoder) cs[0].newInstance(params);
 			} catch (Exception e) {
 				logger.error("failed to initate decoder, ", e);
 				throw new IllegalArgumentException("failed to initate value decoder groupId - " + groupId, e);

@@ -16,13 +16,13 @@ import java.util.List;
 
 public interface IProducer<K,V> extends IEventBus{
 	
-	public static final String BROKER_LIST = "metadata.broker.list";
+	public static final String BROKER_LIST = "bootstrap.servers";
 	public static final String PRODUCER_TOPIC = "producer.topic";	
 	public static final String PRO_TYPE = "producer.type";	
 	public static final String REQUEST_REQUIRED_ACKS = "request.required.acks";
 	
-	public static final String KEY_SERIALIZER_CLASS = "key.serializer.class";
-	public static final String VALUE_SERIALIZER_CLASS = "serializer.class";
+	public static final String KEY_SERIALIZER_CLASS = "key.serializer";
+	public static final String VALUE_SERIALIZER_CLASS = "value.serializer";
 	
 	public static final String BYTE_SERIALIZER_CLASS = "kafka.serializer.DefaultEncoder";
 	public static final String STRING_SERIALIZER_CLASS = "kafka.serializer.StringEncoder";	

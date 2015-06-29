@@ -173,9 +173,8 @@ public class SymmetricDispatcher<K, V> implements IConsumer<K, V> {
 		}
 	}
 
-
 	/**
-	 * Shutdown this dispatcher, set offsets correctly and then shutdown
+	 * Shutdown this CONSUMER, set offsets correctly and then shutdown
 	 * everything
 	 */
 	public void shutdown() {
@@ -214,57 +213,55 @@ public class SymmetricDispatcher<K, V> implements IConsumer<K, V> {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
 		public void run() {
-			synchronized (this.stream) {
-				ConsumerIterator<K, V> it = stream.iterator();
-				logger.info("In runnable thread[" + this.name + "]...");
-				while (it.hasNext()) {
-					MessageAndMetadata<K, V> data = it.next();
-					K key = null;
-					V message = null;
-					try {
-						key = data.key();
-						message = data.message();
-						// logger.info(this.name + " got key : " + key);
-						// logger.info(this.name + " got message: " + message);
-						for (IEventListener listener : this.listeners) {
-							try {
-								if (!listener.beforeProcess(key, message)) {
-									logger.error("Job stopped at preHandle");
-									continue;
-								}
-							} catch (Throwable e) {
-								logger.error(
-										"Listener fail to pre handle event", e);
+			ConsumerIterator<K, V> it = stream.iterator();
+			logger.info("In runnable thread[" + this.name + "]...");
+			while (it.hasNext()) {
+				MessageAndMetadata<K, V> data = it.next();
+				K key = null;
+				V message = null;
+				try {
+					key = data.key();
+					message = data.message();
+					// logger.info(this.name + " got key : " + key);
+					// logger.info(this.name + " got message: " + message);
+					for (IEventListener listener : this.listeners) {
+						try {
+							if (!listener.beforeProcess(key, message)) {
+								logger.error("Job stopped at preHandle");
 								continue;
 							}
-
-							try {
-								if (!listener.process(key, message)) {
-									logger.error("Job stopped at handleEvent");
-									continue;
-								}
-							} catch (Throwable e) {
-								logger.error("Listener fail to handle event", e);
-								continue;
-							}
-
-							try {
-								if (!listener.postProcess(key, message)) {
-									logger.error("Job stopped at postHandle");
-								}
-							} catch (Throwable e) {
-								logger.error(
-										"Listener fail to post handle event", e);
-								continue;
-							}
+						} catch (Throwable e) {
+							logger.error("Listener fail to pre handle event", e);
+							continue;
 						}
-					} catch (Throwable t) {
-						logger.error("Fail to get message from stream: ", t);
-						continue;
-					}
 
+						try {
+							if (!listener.process(key, message)) {
+								logger.error("Job stopped at handleEvent");
+								continue;
+							}
+						} catch (Throwable e) {
+							logger.error("Listener fail to handle event", e);
+							continue;
+						}
+
+						try {
+							if (!listener.postProcess(key, message)) {
+								logger.error("Job stopped at postHandle");
+							}
+						} catch (Throwable e) {
+							logger.error("Listener fail to post handle event",
+									e);
+							continue;
+						}
+					}
+				} catch (Throwable t) {
+					logger.error("Fail to get message from stream: ", t);
+					continue;
 				}
+
 			}
 		}
 	}
+
 }
