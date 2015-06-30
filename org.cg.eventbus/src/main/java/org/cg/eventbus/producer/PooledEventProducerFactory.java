@@ -18,21 +18,21 @@ import org.apache.log4j.Logger;
  * @author yanlinwang
  *
  */
-public class PooledEventProducerFactory <K, V> extends BasePooledObjectFactory<AbstractEventProducer<K, V>> {
+public class PooledEventProducerFactory <K, V> extends BasePooledObjectFactory< AbstractEventProducer<K, V>> {
 	
 	private Logger logger = Logger.getLogger(PooledEventProducerFactory.class);
 	
 	private Configuration producerConf;
 	private AtomicInteger count = new AtomicInteger(0);
-	private Class<AbstractEventProducer> poolType;
+	private Class<? extends AbstractEventProducer> poolType;
 	private Constructor pooledConstructor;
 		
-	public PooledEventProducerFactory (Class<AbstractEventProducer> poolType, String fileName) 
+	public PooledEventProducerFactory (Class<? extends AbstractEventProducer> poolType, String fileName) 
 			throws ConfigurationException {
 		this(poolType,new PropertiesConfiguration(fileName));
 	}
 	
-	public PooledEventProducerFactory (Class<AbstractEventProducer> poolType, Configuration config) {
+	public PooledEventProducerFactory (Class<? extends AbstractEventProducer> poolType, Configuration config) {
 		this.poolType = poolType;
 		producerConf = config;
 		try {

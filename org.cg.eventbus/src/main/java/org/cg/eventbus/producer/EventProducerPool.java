@@ -19,7 +19,7 @@ public class EventProducerPool<K, V> extends GenericObjectPool<AbstractEventProd
 	public static final String IDLE_SIZE = "idle.size";
 
 	
-	public EventProducerPool (Class<AbstractEventProducer> poolType, Configuration conf) throws Exception{		
+	public EventProducerPool (Class<? extends AbstractEventProducer> poolType, Configuration conf) throws Exception{		
 		super(new PooledEventProducerFactory<K, V>(poolType, conf));
 		this.setMaxIdle(conf.getInt(IDLE_SIZE,GenericKeyedObjectPoolConfig.DEFAULT_MAX_IDLE_PER_KEY));
 		this.setMaxTotal(conf.getInt(POOL_SIZE,GenericKeyedObjectPoolConfig.DEFAULT_MAX_TOTAL_PER_KEY));
