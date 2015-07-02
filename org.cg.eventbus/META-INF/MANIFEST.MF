@@ -5,8 +5,6 @@ Bundle-SymbolicName: org.cg.eventbus
 Bundle-Version: 1.0.0
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Code Germ
-Import-Package: org.apache.avro,
- org.apache.log4j
 Export-Package: org.cg.eventbus,
  org.cg.eventbus.consumer,
  org.cg.eventbus.producer
