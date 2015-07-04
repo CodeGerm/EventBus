@@ -56,6 +56,7 @@ public abstract class AbstractEventProducer<K, V> implements
 		this(cfgPath, null);
 	}
 	
+
 	public AbstractEventProducer(String cfgPath, String prefix) throws Exception {
 		if (prefix==null)
 			initialize (new PropertiesConfiguration(cfgPath));
