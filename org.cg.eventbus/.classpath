@@ -6,21 +6,22 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="target/lib/snappy-java-1.1.1.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/slf4j-log4j12-1.6.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/zkclient-0.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/log4j-1.2.14.jar"/>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/scala-library-2.11.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/kafka-clients-0.8.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/commons-lang-2.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/commons-pool2-2.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/metrics-core-2.2.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/slf4j-api-1.6.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/zookeeper-3.4.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/jline-0.9.94.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/joda-time-2.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/jopt-simple-3.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/kafka_2.11-0.8.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/junit-3.8.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/kafka_2.10-0.8.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/kafka-clients-0.8.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/log4j-1.2.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/metrics-core-2.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/scala-library-2.10.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/slf4j-api-1.6.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/slf4j-log4j12-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/snappy-java-1.1.1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/zkclient-0.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/zookeeper-3.4.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
