@@ -15,7 +15,7 @@ import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.apache.log4j.Logger;
 
 /**
- * @author yanlinwang
+ * @author yanlinwang, liang.li
  *
  */
 public class PooledEventProducerFactory <K, V> extends BasePooledObjectFactory< AbstractEventProducer<K, V>> {
@@ -57,4 +57,9 @@ public class PooledEventProducerFactory <K, V> extends BasePooledObjectFactory< 
 		return new DefaultPooledObject<AbstractEventProducer<K,V>>(provider);
 	}
 
+	@Override
+	public void destroyObject(PooledObject<AbstractEventProducer<K, V>> p) {
+		p.getObject().close();
+	}
+	       
 }

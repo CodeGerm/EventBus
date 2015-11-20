@@ -4,10 +4,8 @@
 package org.cg.eventbus.producer;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig;
 import org.apache.commons.pool2.impl.GenericObjectPool;
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
 /**
  * @author yanlinwang
@@ -26,5 +24,4 @@ public class EventProducerPool<K, V> extends GenericObjectPool<AbstractEventProd
 		this.setTestOnBorrow(true);
 		this.setTestOnReturn(true);		
 	}
-
 }
