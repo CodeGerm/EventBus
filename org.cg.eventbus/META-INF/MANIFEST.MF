@@ -26,4 +26,3 @@ Bundle-ClassPath: .,
  target/lib/snappy-java-1.1.1.7.jar,
  target/lib/zkclient-0.3.jar,
  target/lib/zookeeper-3.4.6.jar
-Import-Package: org.apache.commons.configuration
