@@ -4,6 +4,7 @@
 package org.cg.eventbus;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.configuration.Configuration;
@@ -64,4 +65,5 @@ public class ConfigUtil {
 		}
 		return retProp;
 	}
+	
 }
