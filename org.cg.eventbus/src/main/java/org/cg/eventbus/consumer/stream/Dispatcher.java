@@ -3,7 +3,7 @@ package org.cg.eventbus.consumer.stream;
 import org.apache.commons.configuration.Configuration;
 import org.apache.log4j.Logger;
 import org.cg.eventbus.message.MessageHandler;
-import org.cg.eventbus.stream.policy.CommitPolicy;
+import org.cg.eventbus.policy.CommitPolicy;
 
 
 /**

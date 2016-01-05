@@ -1,4 +1,4 @@
-package org.cg.eventbus.stream.policy;
+package org.cg.eventbus.policy;
 
 import org.cg.eventbus.message.Message;
 

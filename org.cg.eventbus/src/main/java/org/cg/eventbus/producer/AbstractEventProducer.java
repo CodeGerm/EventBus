@@ -22,7 +22,7 @@ import org.cg.eventbus.IProducer;
 /**
  * Producer using string key to partition
  * 
- * @author yanlinwang
+ * @author yanlinwang, liang
  *
  */
 public abstract class AbstractEventProducer<K, V> implements
@@ -40,13 +40,12 @@ public abstract class AbstractEventProducer<K, V> implements
 
 	public static final String DEFAULT_PARTITION = "kafka.producer.DefaultPartitioner";
 
-	private Logger logger = Logger
-			.getLogger(AbstractEventProducer.class);
+	private Logger logger = Logger.getLogger(AbstractEventProducer.class);
 
 	/** topic name for this producer */
 	private String topic;
 
-	/** configuration for producer, */
+	/** configuration for producer */
 	private Properties producerConfig;
 
 	/** producer */
@@ -82,7 +81,25 @@ public abstract class AbstractEventProducer<K, V> implements
 		if (null == msg)
 			return;
 		K key = this.getKey(msg);
+		send(key, msg, callback);
+	}
 
+	@Override
+	public void send(List<V> msgs, ICallback callback) {
+		if (msgs==null) {
+			logger.error("ignore null events");
+			return;
+		}
+		for (V msg : msgs) {
+			send (msg, callback);
+		}
+	}
+	
+	@Override
+	public void send(K key, V msg, final ICallback callback) {
+		if (null == key || null == msg)
+			return;
+		
 		ProducerRecord<K, V> data = new ProducerRecord<K, V>(topic, key, msg);
 		producer.send(data, new Callback() {
 			public void onCompletion(RecordMetadata metadata, Exception e) {
@@ -96,17 +113,20 @@ public abstract class AbstractEventProducer<K, V> implements
 					logger.error("failed to send event, response = " + response.toString() , e );
 			}
 		});
-
 	}
-
+	
 	@Override
-	public void send(List<V> msgs, ICallback callback) {
-		if (msgs==null) {
-			logger.error("ignore null events");
+	public void send(List<K> keys, List<V> msgs, ICallback callback) {
+		if (null == keys || null == msgs ||
+				keys.size() < 1 || msgs.size() < 1)
+			return;
+		if (keys.size() != msgs.size()) {
+			logger.error("Sizes of keys and messages are different. " + keys.size() + ":" + msgs.size());
 			return;
 		}
-		for (V msg : msgs) {
-			send (msg, callback);
+		
+		for (int i=0; i<keys.size(); ++i) {
+			send(keys.get(i), msgs.get(i), callback);
 		}
 	}
 
