@@ -4,8 +4,8 @@ import kafka.message.MessageAndMetadata;
 
 public interface IHandler<K, V> {
 	
-	void init(IReporter<K, V> reporter);
+	void init();
 	
-	void handle(MessageAndMetadata<K, V> data);
+	void handle(MessageAndMetadata<K, V> data, IReporter<K, V> reporter);
 
 }

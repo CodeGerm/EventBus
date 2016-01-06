@@ -7,6 +7,7 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationConverter;
 import org.apache.log4j.Logger;
 import org.cg.eventbus.consumer.ConsumerConfigrator;
+import org.cg.eventbus.hook.FetcherHook;
 
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
@@ -60,6 +61,7 @@ public class Fetcher<K, V> {
 		stream = streams.get(0);
 		
 		consumerIter = stream.iterator();
+		Runtime.getRuntime().addShutdownHook(new FetcherHook(connector));
 	}
 	
 	public KafkaStream<K, V> getStream() {

@@ -11,6 +11,10 @@ public interface IReporter<K ,V> {
 	
 	void init();
 	
+	void onSucess();
+	void onFail();
+	void onIncomplete();
+	
 	void report(K key, V msg);
 	
 	void close();

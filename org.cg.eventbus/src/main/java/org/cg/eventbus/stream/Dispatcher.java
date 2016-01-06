@@ -1,7 +1,6 @@
 package org.cg.eventbus.stream;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.log4j.Logger;
 import org.cg.eventbus.policy.IPolicy;
 
@@ -51,11 +50,11 @@ public class Dispatcher<K, V> extends Thread{
 		reporter.init();
 		LOG.debug("Reporter initialization finished.");
 		
-		// Initialize handler, including previously created policy, reporter and fetcher
+		// Initialize handler
 		String handlerName = config.getString("handler.class");
 		Class<IHandler> handlerClass = (Class<IHandler>) Class.forName(handlerName);
 		handler = handlerClass.newInstance();
-		handler.init(reporter);
+		handler.init();
 		LOG.debug("Handler initialization finished.");
 	}
 	
@@ -64,7 +63,7 @@ public class Dispatcher<K, V> extends Thread{
 	public void run() {	
 		while (fetcher.hasNext()) {
 			MessageAndMetadata<K, V> data = fetcher.nextMessage();
-			handler.handle(data);
+			handler.handle(data, reporter);
 			if (policy.pieceDone())
 				fetcher.commit();
 		}
