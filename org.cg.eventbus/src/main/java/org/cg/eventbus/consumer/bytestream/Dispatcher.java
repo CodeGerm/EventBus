@@ -1,4 +1,4 @@
-package org.cg.eventbus.consumer.stream;
+package org.cg.eventbus.consumer.bytestream;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.log4j.Logger;

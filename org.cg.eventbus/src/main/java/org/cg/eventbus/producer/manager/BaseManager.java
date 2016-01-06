@@ -1,7 +1,5 @@
 package org.cg.eventbus.producer.manager;
 
-import java.util.List;
-
 import org.apache.commons.configuration.Configuration;
 import org.cg.eventbus.producer.AbstractEventProducer;
 
