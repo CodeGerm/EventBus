@@ -67,6 +67,14 @@ public abstract class AbstractEventProducer<K, V> implements
 			throws Exception {
 		initialize(config);
 	}
+	
+	public AbstractEventProducer(Configuration config, String prefix) 
+			throws Exception {
+		if (null == prefix)
+			initialize(config);
+		else
+			initialize(ConfigUtil.extractConfiguration(config, prefix));
+	}
 
 	private void initialize(Configuration config) throws Exception {
 		ProducerConfigurator.validate(config);
