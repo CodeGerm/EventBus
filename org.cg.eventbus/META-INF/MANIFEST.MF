@@ -10,7 +10,9 @@ Export-Package: org.apache.commons.configuration,
  org.apache.kafka.clients.producer,
  org.cg.eventbus,
  org.cg.eventbus.consumer,
- org.cg.eventbus.producer
+ org.cg.eventbus.policy,
+ org.cg.eventbus.producer,
+ org.cg.eventbus.stream
 Eclipse-BuddyPolicy: registered 
 Bundle-ClassPath: .,
  target/classes/,
