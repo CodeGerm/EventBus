@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.cg.eventbus
 Bundle-Version: 1.0.0
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Code Germ
-Export-Package: org.apache.commons.configuration,
+Export-Package: kafka.message,
+ org.apache.commons.configuration,
  org.apache.commons.lang.exception,
  org.apache.kafka.clients.producer,
  org.cg.eventbus,

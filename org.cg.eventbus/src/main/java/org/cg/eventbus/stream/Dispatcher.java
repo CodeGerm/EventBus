@@ -46,7 +46,7 @@ public class Dispatcher<K, V> extends Thread{
 	public void run() {	
 		while (fetcher.hasNext()) {
 			MessageAndMetadata<K, V> data = fetcher.nextMessage();
-			System.out.println(data);
+			LOG.debug("Coming Data, key: " + data.key() + ", value: " + data.message());
 			handler.handle(data, reporter);
 			if (policy.pieceDone())
 				fetcher.commit();

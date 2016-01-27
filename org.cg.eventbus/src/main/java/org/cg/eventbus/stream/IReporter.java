@@ -4,12 +4,12 @@ package org.cg.eventbus.stream;
  * 
  * @author liang.li
  *
- * @param <K> key of one record in kafka
- * @param <V> value of this record
  */
-public interface IReporter<T> {
+public interface IReporter<V, T> {
 	
-	void report(T t);
+	T preWork(V v);
+	
+	T report(V v);
 	
 	void close();
 
