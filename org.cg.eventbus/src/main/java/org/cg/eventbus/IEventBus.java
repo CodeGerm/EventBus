@@ -18,7 +18,7 @@ public interface IEventBus {
 	 */
 	public static final String ZK_CONNECT = "zookeeper.connect";
 	
-	public static final String AUTO_CREATE = "eventbus.autoCreate";
+	public static final String AUTO_CREATE = "autoCreate";
 	
 	
 

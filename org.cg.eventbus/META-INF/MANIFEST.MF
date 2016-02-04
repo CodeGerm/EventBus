@@ -6,8 +6,6 @@ Bundle-Version: 1.0.0
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Code Germ
 Export-Package: kafka.message,
- org.apache.commons.configuration,
- org.apache.commons.lang.exception,
  org.apache.kafka.clients.producer,
  org.cg.eventbus,
  org.cg.eventbus.consumer,
@@ -31,6 +29,4 @@ Bundle-ClassPath: .,
  target/lib/slf4j-log4j12-1.6.1.jar,
  target/lib/snappy-java-1.1.1.7.jar,
  target/lib/zkclient-0.3.jar,
- target/lib/zookeeper-3.4.6.jar,
- target/lib/commons-configuration-1.10.jar,
- target/lib/commons-lang-2.6.jar
+ target/lib/zookeeper-3.4.6.jar
