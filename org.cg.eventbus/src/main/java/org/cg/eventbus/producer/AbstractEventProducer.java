@@ -71,7 +71,7 @@ public abstract class AbstractEventProducer<K, V> implements
 		initialize(config);
 	}
 
-	private void initialize(Configuration config) throws Exception {
+	protected void initialize(Configuration config) throws Exception {
 		this.config = config;
 		ProducerConfigurator.validate(config);
 		producerConfig = ConfigurationConverter.getProperties(config);
