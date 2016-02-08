@@ -37,7 +37,6 @@ public abstract class AbstractEventProducer<K, V> implements
 	public static final String NO_ACK = "0";
 	public static final String LEADER_ACK = "1";
 	public static final String REPLICAS_ACK = "-1";
-
 	public static final String DEFAULT_PARTITION = "kafka.producer.DefaultPartitioner";
 
 	private Logger logger = Logger
@@ -49,6 +48,9 @@ public abstract class AbstractEventProducer<K, V> implements
 	/** configuration for producer, */
 	private Properties producerConfig;
 
+	/* configuration passing along*/
+	private Configuration config;
+	
 	/** producer */
 	private KafkaProducer<K, V> producer;
 
@@ -70,12 +72,23 @@ public abstract class AbstractEventProducer<K, V> implements
 	}
 
 	private void initialize(Configuration config) throws Exception {
+		this.config = config;
 		ProducerConfigurator.validate(config);
 		producerConfig = ConfigurationConverter.getProperties(config);
 		topic = config.getString(PRODUCER_TOPIC);
 		producer = new KafkaProducer<K, V>(producerConfig);
 		logger.info("producer initialized");
 	}
+
+	
+	
+	/**
+	 * @return the config
+	 */
+	public Configuration getConfig() {
+		return config;
+	}
+
 
 	@Override
 	public void send(V msg, final ICallback callback) {
