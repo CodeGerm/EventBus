@@ -111,6 +111,14 @@ public abstract class AbstractEventProducer<K, V> implements
 		});
 
 	}
+	
+
+	/**
+	 * @return the logger
+	 */
+	public Logger getLogger() {
+		return logger;
+	}
 
 	@Override
 	public void send(List<V> msgs, ICallback callback) {
