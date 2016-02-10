@@ -1,4 +1,4 @@
-package org.cg.eventbus.consumer.stream;
+package org.cg.eventbus.consumer.bytestream;
 
 import java.util.List;
 

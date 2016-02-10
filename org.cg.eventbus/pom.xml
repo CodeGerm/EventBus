@@ -220,7 +220,6 @@
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<version>1.10</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.xerial.snappy</groupId>

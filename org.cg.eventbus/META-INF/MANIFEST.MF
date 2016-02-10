@@ -5,10 +5,13 @@ Bundle-SymbolicName: org.cg.eventbus
 Bundle-Version: 1.0.0
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Code Germ
-Export-Package: org.apache.kafka.clients.producer,
+Export-Package: kafka.message,
+ org.apache.kafka.clients.producer,
  org.cg.eventbus,
  org.cg.eventbus.consumer,
- org.cg.eventbus.producer
+ org.cg.eventbus.policy,
+ org.cg.eventbus.producer,
+ org.cg.eventbus.stream
 Eclipse-BuddyPolicy: registered 
 Bundle-ClassPath: .,
  target/classes/,
