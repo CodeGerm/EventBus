@@ -17,7 +17,7 @@ import java.util.List;
 public interface IProducer<K,V> extends IEventBus{
 	
 	public static final String BROKER_LIST = "bootstrap.servers";
-	public static final String PRODUCER_TOPIC = "producer.topic";	
+	public static final String PRODUCER_TOPIC = "producer.topic.name";	
 	public static final String PRO_TYPE = "producer.type";	
 	public static final String REQUEST_REQUIRED_ACKS = "request.required.acks";
 	

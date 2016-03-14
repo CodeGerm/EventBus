@@ -1,7 +1,7 @@
 flow.sources.source.channel.enabled=false
 flow.sources.source.kafkaChannel.zookeeper.connect = localhost:2181
 flow.sources.source.kafkaChannel.bootstrap.servers = localhost:9092
-flow.sources.source.kafkaChannel.producer.topic = yanlinTopic
+flow.sources.source.kafkaChannel.producer.topic.name = yanlinTopic
 flow.sources.source.kafkaChannel.producer.topic.replicationFactor = 1
 flow.sources.source.kafkaChannel.producer.topic.numPartitions = 5
 flow.sources.source.kafkaChannel.key.serializer = org.apache.kafka.common.serialization.StringSerializer
