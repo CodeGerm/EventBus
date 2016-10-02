@@ -22,7 +22,6 @@ Bundle-ClassPath: .,
  target/lib/junit-3.8.1.jar,
  target/lib/kafka_2.10-0.8.2.1.jar,
  target/lib/kafka-clients-0.8.2.1.jar,
- target/lib/log4j-1.2.16.jar,
  target/lib/metrics-core-2.2.0.jar,
  target/lib/scala-library-2.10.4.jar,
  target/lib/slf4j-api-1.6.4.jar,
@@ -30,3 +29,4 @@ Bundle-ClassPath: .,
  target/lib/snappy-java-1.1.1.7.jar,
  target/lib/zkclient-0.3.jar,
  target/lib/zookeeper-3.4.6.jar
+Require-Bundle: org.cg.dao.logging
