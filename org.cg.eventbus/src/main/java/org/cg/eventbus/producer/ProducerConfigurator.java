@@ -33,6 +33,11 @@ public class ProducerConfigurator {
 		}
 		logger.info("EventBus  broker list: "
 				+ config.getString(IProducer.BROKER_LIST));
+		String brokerList = config.getString(IProducer.BROKER_LIST);
+		if (null == brokerList || brokerList.isEmpty()) {
+			throw new IllegalArgumentException("Missing configuration "
+					+ IProducer.BROKER_LIST);
+		}
 
 		if (!config.containsKey(IProducer.PRODUCER_TOPIC)) {
 			throw new IllegalArgumentException("Missing configuration "
