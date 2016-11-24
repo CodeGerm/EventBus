@@ -15,8 +15,6 @@
 	<classpathentry exported="true" kind="lib" path="target/lib/kafka-clients-0.8.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/metrics-core-2.2.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/scala-library-2.10.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/slf4j-api-1.6.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/slf4j-log4j12-1.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/snappy-java-1.1.1.7.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/zkclient-0.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/zookeeper-3.4.6.jar"/>
