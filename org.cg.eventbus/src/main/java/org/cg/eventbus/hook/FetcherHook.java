@@ -11,7 +11,7 @@ import kafka.javaapi.consumer.ConsumerConnector;
  */
 public class FetcherHook extends Thread{
 	
-	private Logger LOG = Logger.getLogger(FetcherHook.class);
+	private static final Logger LOG = Logger.getLogger(FetcherHook.class);
 	
 	private ConsumerConnector connector;
 

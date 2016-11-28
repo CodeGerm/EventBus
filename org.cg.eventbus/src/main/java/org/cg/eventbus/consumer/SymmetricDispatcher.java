@@ -36,7 +36,7 @@ import org.cg.eventbus.IEventListener;
  */
 public class SymmetricDispatcher<K, V> implements IConsumer<K, V> {
 
-	private Logger logger = Logger.getLogger(SymmetricDispatcher.class);
+	private static final Logger logger = Logger.getLogger(SymmetricDispatcher.class);
 
 	private String groupID;
 

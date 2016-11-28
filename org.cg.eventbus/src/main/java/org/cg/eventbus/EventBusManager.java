@@ -64,7 +64,7 @@ public class EventBusManager {
 
 	}
 
-	private Logger logger = Logger.getLogger(EventBusManager.class);
+	private static final Logger logger = Logger.getLogger(EventBusManager.class);
 	private ZkClient zkClient;
 
 	public EventBusManager(String zkServer) {

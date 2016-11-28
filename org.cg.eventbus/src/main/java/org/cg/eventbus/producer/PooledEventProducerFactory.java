@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class PooledEventProducerFactory <K, V> extends BasePooledObjectFactory< AbstractEventProducer<K, V>> {
 	
-	private Logger logger = Logger.getLogger(PooledEventProducerFactory.class);
+	private static final Logger logger = Logger.getLogger(PooledEventProducerFactory.class);
 	
 	private Configuration producerConf;
 	private AtomicInteger count = new AtomicInteger(0);

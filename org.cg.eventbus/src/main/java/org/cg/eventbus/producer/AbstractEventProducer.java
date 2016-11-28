@@ -39,7 +39,7 @@ public abstract class AbstractEventProducer<K, V> implements
 	public static final String REPLICAS_ACK = "-1";
 	public static final String DEFAULT_PARTITION = "kafka.producer.DefaultPartitioner";
 
-	private Logger logger = Logger.getLogger(AbstractEventProducer.class);
+	private static final Logger logger = Logger.getLogger(AbstractEventProducer.class);
 
 	/** topic name for this producer */
 	private String topic;

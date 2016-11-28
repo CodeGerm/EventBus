@@ -13,7 +13,7 @@ import kafka.message.MessageAndMetadata;
  */
 public class Dispatcher<K, V> extends Thread{
 	
-	private Logger LOG = Logger.getLogger(Dispatcher.class);
+	private static final Logger LOG = Logger.getLogger(Dispatcher.class);
 	
 	private Configuration config;
 	

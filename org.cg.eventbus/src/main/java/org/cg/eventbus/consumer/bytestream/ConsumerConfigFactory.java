@@ -19,7 +19,7 @@ import kafka.consumer.ConsumerConfig;
 
 public class ConsumerConfigFactory {
 
-	private Logger LOG = Logger.getLogger(ConsumerConfigFactory.class);
+	private static final Logger LOG = Logger.getLogger(ConsumerConfigFactory.class);
 	private Properties consumerProp;
 	
 	public ConsumerConfigFactory() {

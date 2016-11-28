@@ -25,7 +25,7 @@ import kafka.serializer.Decoder;
  */
 public class Fetcher<K, V> {
 	
-	private Logger LOG = Logger.getLogger(Fetcher.class);
+	private static final Logger LOG = Logger.getLogger(Fetcher.class);
 	
 	// 
 	private final int STREAM_NUMBER = 1;
