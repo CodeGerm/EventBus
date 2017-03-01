@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import joptsimple.internal.Strings;
+
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.log4j.Logger;
@@ -39,7 +41,7 @@ public class ManagerConfigurator {
 	
 	public static Map<String, Configuration> getConfig(Configuration config) throws Exception {
 		
-		if (!config.containsKey(IManager.TOPIC_LIST)) {
+		if (!config.containsKey(IManager.TOPIC_LIST) || config.getString(IManager.TOPIC_LIST).length() < 1) {
 			LOG.error("Missing configuration " + IManager.TOPIC_LIST);
 			throw new IllegalArgumentException("Missing configuration " + 
 						IManager.TOPIC_LIST);
