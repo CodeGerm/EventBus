@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import joptsimple.internal.Strings;
 import kafka.serializer.Decoder;
 
 import org.apache.commons.configuration.ConfigurationException;
@@ -47,7 +48,7 @@ public class ConsumerConfigrator {
 		String groupId;
 		
 
-		if (!props.containsKey(IConsumer.GROUP_ID)) {
+		if (!props.containsKey(IConsumer.GROUP_ID) || Strings.isNullOrEmpty(props.getProperty(IConsumer.GROUP_ID))) {
 			logger.error(IConsumer.GROUP_ID + " is missing");
 			for (Object s : props.keySet()) {
 				logger.error(s.toString() + ": " + props.get(s).toString());
@@ -59,7 +60,7 @@ public class ConsumerConfigrator {
 		logger.info("groupId: " + groupId);
 
 
-		if (!props.containsKey(IEventBus.ZK_CONNECT)) {
+		if (!props.containsKey(IEventBus.ZK_CONNECT) || Strings.isNullOrEmpty(props.getProperty(IEventBus.ZK_CONNECT))) {
 			throw new IllegalArgumentException("missing zookeeper for groupId : " + groupId);
 		}
 		String client = props.getProperty(IConsumer.GROUP_ID)
@@ -68,7 +69,7 @@ public class ConsumerConfigrator {
 		logger.info( "validating event bus - " + client );
 		
 		
-		if (!props.containsKey(IConsumer.KEY_DECODER)) {
+		if (!props.containsKey(IConsumer.KEY_DECODER) || Strings.isNullOrEmpty(props.getProperty(IConsumer.KEY_DECODER))) {
 			throw new IllegalArgumentException("missing key decoder config for event bus - " + client );
 		}
 		
@@ -76,13 +77,13 @@ public class ConsumerConfigrator {
 	
 		
 		
-		if (!props.containsKey(IConsumer.VALUE_DECODER)) {
+		if (!props.containsKey(IConsumer.VALUE_DECODER) || Strings.isNullOrEmpty(props.getProperty(IConsumer.VALUE_DECODER))) {
 			throw new IllegalArgumentException("missing value decoder config for event bus - " + client);
 		}
 		logger.info(client + " value_decoder: " + props.getProperty(IConsumer.VALUE_DECODER));
 		
 		
-		if (!props.containsKey(IConsumer.CONSUMER_TOPICS)) {
+		if (!props.containsKey(IConsumer.CONSUMER_TOPICS) || Strings.isNullOrEmpty(props.getProperty(IConsumer.CONSUMER_TOPICS))) {
 			throw new IllegalArgumentException("missing topics config for event bus - " + client );
 		}
 		logger.info(client + " consumer topics: " + props.getProperty(IConsumer.CONSUMER_TOPICS));
@@ -167,7 +168,7 @@ public class ConsumerConfigrator {
 		for (String topic : topicNames) {
 			String lsnrs = String.format(IConsumer.CONSUMER_LISTENERS, topic);
 			
-			if (!props.containsKey(lsnrs)) {
+			if (!props.containsKey(lsnrs) || Strings.isNullOrEmpty(props.getProperty(lsnrs))) {
 				throw new IllegalArgumentException("failed to locate topic properties - " + topic);
 			}
 			String[] listeners = props.getProperty(lsnrs).split(",");
