@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.codegerm</groupId>
 	<artifactId>org.cg.eventbus</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4-SNAPSHOT</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Simplified messaging programming model with kafka implementation.</description>
@@ -15,7 +15,7 @@
 		<url>https://github.com/CodeGerm/EventBus</url>
 		<connection>scm:git:git@github.com:CodeGerm/EventBus.git</connection>
 		<developerConnection>scm:git:git@github.com:CodeGerm/EventBus.git</developerConnection>
-	  <tag>org.cg.eventbus-1.0.3</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<licenses>
 		<license>
