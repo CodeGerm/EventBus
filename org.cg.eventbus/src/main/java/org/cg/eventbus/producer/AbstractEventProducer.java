@@ -33,6 +33,7 @@ public abstract class AbstractEventProducer<K, V> implements
 	public static final String DEFAULT_BROKER_LIST = "localhost:9092";
 
 	public static final String PRO_TYPE_ASYNC = "async";
+	public static final String QUIT_ON_ERROR = "quit-on-error";
 
 	public static final String NO_ACK = "0";
 	public static final String LEADER_ACK = "1";
@@ -52,6 +53,8 @@ public abstract class AbstractEventProducer<K, V> implements
 	
 	/** producer */
 	private KafkaProducer<K, V> producer;
+	
+	private boolean quitOnError = false;
 
 	public AbstractEventProducer(String cfgPath) throws Exception {
 		this(cfgPath, null);
@@ -83,6 +86,7 @@ public abstract class AbstractEventProducer<K, V> implements
 		ProducerConfigurator.validate(config);
 		producerConfig = ConfigurationConverter.getProperties(config);
 		topic = config.getString(PRODUCER_TOPIC);
+		if (config.containsKey(QUIT_ON_ERROR)) quitOnError = config.getBoolean(QUIT_ON_ERROR);
 		producer = new KafkaProducer<K, V>(producerConfig);
 		logger.info("producer initialized");
 	}
@@ -124,14 +128,17 @@ public abstract class AbstractEventProducer<K, V> implements
 		ProducerRecord<K, V> data = new ProducerRecord<K, V>(topic, key, msg);
 		producer.send(data, new Callback() {
 			public void onCompletion(RecordMetadata metadata, Exception e) {
-				Response response = new Response ();
-				response.setTopic(metadata.topic());
-				response.setOffset(metadata.offset());
-				response.setPartition(metadata.partition());
-				if (callback != null)
-					callback.onCompletion(response, e);
-				if (e != null)
-					logger.error("failed to send event, response = " + response.toString() , e );
+				if (e != null) {
+					logger.error("failed to send event: " , e );
+					if (quitOnError) System.exit(1);
+				}
+				if (metadata!=null) {
+					Response response = new Response ();
+					response.setTopic(metadata.topic());
+					response.setOffset(metadata.offset());
+					response.setPartition(metadata.partition());
+					if (callback != null) callback.onCompletion(response, e);
+				}
 			}
 		});
 
