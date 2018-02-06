@@ -13,6 +13,9 @@ import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.common.errors.RecordBatchTooLargeException;
+import org.apache.kafka.common.errors.RecordTooLargeException;
+import org.apache.kafka.common.errors.RetriableException;
 import org.apache.log4j.Logger;
 import org.cg.eventbus.ConfigUtil;
 import org.cg.eventbus.ICallback;
@@ -130,7 +133,11 @@ public abstract class AbstractEventProducer<K, V> implements
 			public void onCompletion(RecordMetadata metadata, Exception e) {
 				if (e != null) {
 					logger.error("failed to send event: " , e );
-					if (quitOnError) System.exit(1);
+					if (e instanceof RecordTooLargeException || e instanceof RecordBatchTooLargeException || e instanceof RetriableException) {
+						logger.error("skipping exception" + e.getClass().toString());
+					} else if (quitOnError) {
+						System.exit(1);
+					}
 				}
 				if (metadata!=null) {
 					Response response = new Response ();
