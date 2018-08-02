@@ -1,8 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.codegerm</groupId>
 	<artifactId>org.cg.eventbus</artifactId>
-	<version>1.0.6</version>
+	<version>1.0.6-SNAPSHOT</version>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Simplified messaging programming model with kafka implementation.</description>
@@ -15,7 +16,7 @@
 		<url>https://github.com/CodeGerm/EventBus</url>
 		<connection>scm:git:git@github.com:CodeGerm/EventBus.git</connection>
 		<developerConnection>scm:git:git@github.com:CodeGerm/EventBus.git</developerConnection>
-		<tag>org.cg.eventbus-1.0.6</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<licenses>
 		<license>
@@ -33,6 +34,12 @@
 		<developer>
 			<name>Liang Li</name>
 			<email>yqfrog@gmail.com</email>
+			<organization>CodeGerm</organization>
+			<organizationUrl>https://github.com/CodeGerm</organizationUrl>
+		</developer>
+		<developer>
+			<name>Weizhi Li</name>
+			<email>weizhi.li@me.com</email>
 			<organization>CodeGerm</organization>
 			<organizationUrl>https://github.com/CodeGerm</organizationUrl>
 		</developer>
