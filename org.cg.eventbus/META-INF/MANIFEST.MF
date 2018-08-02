@@ -16,15 +16,15 @@ Eclipse-BuddyPolicy: registered
 Bundle-ClassPath: .,
  target/classes/,
  target/lib/commons-pool2-2.0.jar,
- target/lib/jline-0.9.94.jar,
- target/lib/joda-time-2.4.jar,
- target/lib/jopt-simple-3.2.jar,
  target/lib/junit-3.8.1.jar,
- target/lib/kafka_2.10-0.8.2.1.jar,
- target/lib/kafka-clients-0.8.2.1.jar,
  target/lib/metrics-core-2.2.0.jar,
- target/lib/scala-library-2.10.4.jar,
  target/lib/snappy-java-1.1.1.7.jar,
- target/lib/zkclient-0.3.jar,
- target/lib/zookeeper-3.4.6.jar
+ target/lib/kafka_2.11-0.11.0.0.jar,
+ target/lib/kafka-clients-0.11.0.0.jar,
+ target/lib/zkclient-0.10.jar,
+ target/lib/zookeeper-3.4.10.jar,
+ target/lib/joda-time-2.4.jar,
+ target/lib/jopt-simple-5.0.3.jar,
+ target/lib/junit-4.12.jar,
+ target/lib/scala-library-2.11.11.jar
 Require-Bundle: org.cg.dao.logging

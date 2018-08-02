@@ -6,18 +6,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="target/lib/kafka_2.11-0.11.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/kafka-clients-0.11.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/zkclient-0.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="target/lib/zookeeper-3.4.10.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/commons-pool2-2.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/jline-0.9.94.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/joda-time-2.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/jopt-simple-3.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/junit-3.8.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/kafka_2.10-0.8.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/kafka-clients-0.8.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/metrics-core-2.2.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/scala-library-2.10.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/snappy-java-1.1.1.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/zkclient-0.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="target/lib/zookeeper-3.4.6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
@@ -35,5 +30,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="target/lib/jopt-simple-5.0.3.jar"/>
+	<classpathentry kind="lib" path="target/lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="target/lib/scala-library-2.11.11.jar"/>
+	<classpathentry kind="lib" path="target/lib/joda-time-2.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
