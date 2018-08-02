@@ -4,7 +4,6 @@
 package org.cg.eventbus.consumer;
 
 import java.lang.reflect.Constructor;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +89,7 @@ public class ConsumerConfigrator {
 	}
 
 	
+	@SuppressWarnings("rawtypes")
 	public static Decoder configKeyDecoder(Properties props) {
 		String decoderClassName = props.getProperty(IConsumer.KEY_DECODER);
 		String groupId = props.getProperty(IConsumer.GROUP_ID);

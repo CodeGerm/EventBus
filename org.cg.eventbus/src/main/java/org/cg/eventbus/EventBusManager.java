@@ -15,6 +15,7 @@ import kafka.cluster.Cluster;
 import kafka.utils.ZkUtils;
 
 import org.I0Itec.zkclient.ZkClient;
+import org.I0Itec.zkclient.ZkConnection;
 import org.apache.log4j.Logger;
 import org.cg.eventbus.consumer.IConsumer;
 
@@ -65,13 +66,11 @@ public class EventBusManager {
 	}
 
 	private static final Logger logger = Logger.getLogger(EventBusManager.class);
-	private ZkClient zkClient;
-
+	private ZkUtils zkUtils;
 	public EventBusManager(String zkServer) {
 		kafka.utils.ZKStringSerializer$ mySerial = kafka.utils.ZKStringSerializer$.MODULE$;
-		zkClient = new ZkClient(zkServer,
-				IConsumer.DEFAULT_ZKCLIENT_SESSION_TIMEOUT,
-				IConsumer.DEFAULT_ZKCLIENT_CONNECTION_TIMEOUT, mySerial);
+		ZkClient zkClient = new ZkClient(zkServer,IConsumer.DEFAULT_ZKCLIENT_SESSION_TIMEOUT, IConsumer.DEFAULT_ZKCLIENT_CONNECTION_TIMEOUT, mySerial);
+		zkUtils = new ZkUtils(zkClient, new ZkConnection(zkServer, IConsumer.DEFAULT_ZKCLIENT_SESSION_TIMEOUT), false);
 	}
 
 	public boolean isEventBusUp() {
@@ -81,50 +80,15 @@ public class EventBusManager {
 	}
 
 	public int getEventBusSize() {
-		Cluster cluster = ZkUtils.getCluster(zkClient);
+		Cluster cluster = zkUtils.getCluster();
 		return cluster.size();
-	}
-
-	public Map<Integer, Connection> getEventBusInfo() {
-		Map<Integer, Connection> info = new HashMap<Integer, Connection>();
-		int num = getEventBusSize();
-
-		if (0 >= num) {
-			logger.error("empty EventBus, size=" + num);
-			return null;
-		}
-
-		Cluster cluster = ZkUtils.getCluster(zkClient);
-		for (int i = 0; i < num; ++i) {
-			Connection connect = new Connection(cluster.getBroker(i).get()
-					.host(), cluster.getBroker(i).get().port());
-			info.put(cluster.getBroker(i).get().id(), connect);
-		}
-
-		return info;
-	}
-
-	public boolean isBrokerUp(int id) {
-		Map<Integer, Connection> info = getEventBusInfo();
-
-		if (null == info) {
-			logger.error("Failed to get EventBus info brokerId=" + id);
-			return false;
-		}
-
-		if (info.containsKey(Integer.valueOf(id))) {
-			return true;
-		}
-
-		logger.info("No broker in the EventBus brokerId=" + id);
-		return false;
 	}
 
 	public List<String> getAllTopics() throws Exception {
 		List<String> topicNames = null;
 
 		try {
-			Seq<String> topics = ZkUtils.getAllTopics(zkClient);
+			Seq<String> topics = zkUtils.getAllTopics();
 			topicNames = new ArrayList<String>();
 			String[] topicStrings = new String[topics.size()];
 			topics.copyToArray(topicStrings);
@@ -183,7 +147,7 @@ public class EventBusManager {
 		command.toArray(comd_string);
 		TopicCommandOptions opt = new TopicCommandOptions(comd_string);
 
-		TopicCommand.createTopic(zkClient, opt);
+		TopicCommand.createTopic(zkUtils, opt);
 		return true;
 	}
 
@@ -216,16 +180,15 @@ public class EventBusManager {
 		command.toArray(comd_string);
 		TopicCommandOptions opt = new TopicCommandOptions(comd_string);
 
-		TopicCommand.alterTopic(zkClient, opt);
+		TopicCommand.alterTopic(zkUtils, opt);
 		return true;
 
 	}
 
 	public Map<String, Integer> getAllPartitions() {
 
-		Seq<String> topics = ZkUtils.getAllTopics(zkClient);
-		scala.collection.mutable.Map<String, scala.collection.Map<Object, Seq<Object>>> map = ZkUtils
-				.getPartitionAssignmentForTopics(zkClient, topics);
+		Seq<String> topics = zkUtils.getAllTopics();
+		scala.collection.mutable.Map<String, scala.collection.Map<Object, Seq<Object>>> map = zkUtils.getPartitionAssignmentForTopics(topics);
 		scala.collection.Iterator<String> it = map.keysIterator();
 
 		Map<String, Integer> topicPartitions = new HashMap<String, Integer>();
@@ -245,7 +208,7 @@ public class EventBusManager {
 			return false;
 		}
 
-		zkClient.deleteRecursive(ZkUtils.getTopicPath(topic));
+		zkUtils.deletePathRecursive(ZkUtils.getTopicPath(topic));
 		if (hasTopic(topic))
 			return false;
 		return true;
@@ -257,6 +220,6 @@ public class EventBusManager {
 	}
 
 	public void shutdown() {
-		this.zkClient.close();
+		this.zkUtils.close();
 	}
 }
