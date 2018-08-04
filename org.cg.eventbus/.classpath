@@ -6,6 +6,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="target/lib/scala-parser-combinators_2.11-1.0.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/kafka_2.11-0.11.0.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/kafka-clients-0.11.0.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="target/lib/zkclient-0.10.jar"/>
