@@ -6,7 +6,9 @@ Bundle-Version: 1.0.0
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Code Germ
 Export-Package: kafka.message,
+ kafka.serializer,
  org.apache.kafka.clients.producer,
+ org.apache.kafka.common.serialization,
  org.cg.eventbus,
  org.cg.eventbus.consumer,
  org.cg.eventbus.policy,
